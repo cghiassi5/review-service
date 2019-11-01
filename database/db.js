@@ -30,6 +30,7 @@ var accessOneHouse = (id, callback) => {
   });
 };
 
+
 var addOneHouse = (house, callback) => {
   model.Review.create(house).then((result) => {
     callback(null, result);
@@ -53,5 +54,6 @@ module.exports = {
   'reset': reset,
   'accessOneHouse': accessOneHouse,
   'addOneHouse': addOneHouse,
-  'addOneReview': addOneReview
+  'addOneReview': addOneReview,
+  'update'
 };

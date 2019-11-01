@@ -23,7 +23,7 @@ app.get(`/rooms/:id`, (req, res) => {
   })
 })
 
-app.post('/rooms', (req, res) => {
+app.put('/rooms', (req, res) => {
   db.addOneHouse(req.body, (err) => {
     if (err) {
       console.log('error adding house to database:', err);
@@ -55,5 +55,17 @@ app.delete('/rooms', (req, res) => {
       console.log('all data in collection deleted');
     }
     res.end();
+  })
+});
+
+app.post('/rooms', (req, res) => {
+  db.addOneHouse(req.body, (err) => {
+    if (err) {
+      console.log('error adding house to database:', err);
+      res.end();
+    } else {
+      console.log('house stored successfully!!!!');
+      res.send(req.body);
+    }
   })
 })

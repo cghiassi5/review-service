@@ -81,7 +81,7 @@ db.reset((err) => {
     console.log('error deleting old records when seeding db:', err);
   } else {
     addHouses(100);
-    setTimeout(addReviews, 2000, 100);
+    setTimeout(addReviews, 4000, 100);
     console.log('completed seeding DB :D');
   }
 })
