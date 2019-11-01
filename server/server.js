@@ -58,7 +58,7 @@ app.delete('/rooms', (req, res) => {
   })
 });
 
-app.post('/rooms', (req, res) => {
+app.put('/rooms', (req, res) => {
   db.addOneHouse(req.body, (err) => {
     if (err) {
       console.log('error adding house to database:', err);
