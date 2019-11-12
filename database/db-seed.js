@@ -2,6 +2,7 @@ const model = require('./model.js');
 const db = require('./db.js');
 const faker = require('faker');
 
+
 var randomNum = (min, max, places = 0) => {
   return Number((Math.random() * (max - min) + min).toFixed(places));
 }
@@ -56,6 +57,8 @@ var addHouses = (num) => {
   }
 }
 
+//lorem paragraphs did not have enough values to as many unique reviews as needed
+// so this function randomizes reviews by adding new review text to old review text
 var addReviews = (num) => {
   for (var i = 0; i < num; i++) {
     var rando = randomNum(0, 300);

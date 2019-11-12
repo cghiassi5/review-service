@@ -6,13 +6,14 @@ const path = require('path');
 let reviewData;
 let reviewHeader = ReviewGenerator.generateCsvHeader();
 const csvWriter = createCsvWriter({
-  path: path.join(__dirname, 'csvs', 'review.csv'),
+  path: path.join(__dirname, '/postgres/reviews', 'review.csv'),
   header: reviewHeader,
+  alwaysQuote: true,
 });
 
 const writeReviewsToCsv = async () => {
-  for (let i = 0; i <= 1000; i++) {
-    reviewData = ReviewGenerator.generateReviews(100);
+  for (let i = 0; i < 10000; i++) {
+    reviewData = ReviewGenerator.generateReviews(1000);
      await batchWriter(reviewData, i, csvWriter);
   }
 };

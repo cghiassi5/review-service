@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const uri = 'mongodb://localhost/reviews';
 const model = require('./model.js');
 
+
+//database related functions to be used by server
+
+
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, function(err) {
   if (err) {
     console.log('error connecting to db -->', err);
