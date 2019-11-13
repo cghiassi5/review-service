@@ -1,21 +1,23 @@
+require('newrelic');
 const express = require('express');
 
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
-const db = require('../database/db.js');
+const db = require('../database/HighVolumeSeed/data_generation/models.js');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(`${__dirname  }/../client/dist`));
+app.use(express.static(`${__dirname}/../client/dist`));
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 app.get('/rooms/:id', (req, res) => {
-  db.accessOneHouse(req.params.id, (err, house) => {
+  db.selectReviews(req.params.id, (err, house) => {
     if (err) {
-      console.log('error accessing the data of one house:', err);
+      console.log('error accessing the reviews of one house:', err);
       res.end();
     } else {
       res.setHeader('Cache-Control', 'max-age=31536000');
@@ -25,7 +27,9 @@ app.get('/rooms/:id', (req, res) => {
 });
 
 app.post('/rooms', (req, res) => {
-  db.addOneHouse(req.body, (err) => {
+  const newReview = req.body;
+  console.log(newReview);
+  db.addReview(newReview, (err) => {
     if (err) {
       console.log('error adding house to database:', err);
       res.end();
@@ -37,12 +41,12 @@ app.post('/rooms', (req, res) => {
 });
 
 app.post('/rooms/review', (req, res) => {
-  db.addOneReview(req.body.review, req.body.house_id, (err) => {
+  db.addReview(req.body.review, req.body.house_id, (err) => {
     if (err) {
       console.log('error adding review to house in database:', err);
       res.end();
     } else {
-      console.log('review stored in house database successfully!!!');
+      console.log('review stored  successfully!!!');
       res.send(req.body);
     }
   });

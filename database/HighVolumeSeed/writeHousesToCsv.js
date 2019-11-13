@@ -1,10 +1,10 @@
 const createCsvWriter = require('csv-writer').createArrayCsvWriter;
+const path = require('path');
 const HouseGenerator = require('./houseGenerator.js');
 const batchWriter = require('./batchWriter.js');
-const path = require('path');
 
 let houseData;
-let houseHeader = HouseGenerator.generateCsvHeader();
+const houseHeader = HouseGenerator.generateCsvHeader();
 const csvWriter = createCsvWriter({
   path: path.join(__dirname, '/postgres/houses', 'house.csv'),
   header: houseHeader,
@@ -14,7 +14,7 @@ const csvWriter = createCsvWriter({
 const writeHousesToCsv = async () => {
   for (let i = 0; i <= 1000; i++) {
     houseData = HouseGenerator.generateHouses(100);
-     await batchWriter(houseData, i, csvWriter);
+    await batchWriter(houseData, i, csvWriter);
   }
 };
 
