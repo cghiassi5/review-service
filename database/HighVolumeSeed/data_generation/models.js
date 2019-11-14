@@ -7,7 +7,7 @@ const pool = new Pool({
 });
 
 function selectReviews(houseId, callback) {
-  pool.query(`SELECT * FROM reviews WHERE house_id=${houseId} limit 10;`, (err, result) => {
+  pool.query(`SELECT * FROM houses JOIN reviews ON houses.houses_id = reviews.house_id WHERE houses.houses_id=${houseId} limit 100;`, (err, result) => {
     if (err) {
       return callback(err, null);
     }

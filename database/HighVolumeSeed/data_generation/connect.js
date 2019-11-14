@@ -33,16 +33,16 @@ const { Pool } = require('pg');
   // to-do: create houses table
   try {
     client.query(`CREATE TABLE IF NOT EXISTS houses (
-    house_id SERIAL PRIMARY KEY,
+    houses_id SERIAL PRIMARY KEY,
     host_pic TEXT,
     host_name TEXT,
     total_rating FLOAT,
-    communication FLOAT,
-    location FLOAT,
-    value FLOAT,
-    check_in FLOAT,
-    accuracy FLOAT,
-    cleanliness FLOAT
+    average_communication FLOAT,
+    average_location FLOAT,
+    average_value FLOAT,
+    average_check_in FLOAT,
+    average_accuracy FLOAT,
+    average_cleanliness FLOAT
     )`);
     console.log('houses table created');
   } catch (err) {
