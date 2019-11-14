@@ -21,6 +21,7 @@ app.get('/rooms/:id', (req, res) => {
       res.end();
     } else {
       res.setHeader('Cache-Control', 'max-age=31536000');
+      res.status(200);
       res.send(house);
     }
   });
@@ -28,7 +29,6 @@ app.get('/rooms/:id', (req, res) => {
 
 app.post('/rooms', (req, res) => {
   const newReview = req.body;
-  console.log(newReview);
   db.addReview(newReview, (err) => {
     if (err) {
       console.log('error adding house to database:', err);
@@ -40,36 +40,27 @@ app.post('/rooms', (req, res) => {
   });
 });
 
-app.post('/rooms/review', (req, res) => {
-  db.addReview(req.body.review, req.body.house_id, (err) => {
-    if (err) {
-      console.log('error adding review to house in database:', err);
-      res.end();
-    } else {
-      console.log('review stored  successfully!!!');
-      res.send(req.body);
-    }
-  });
-});
-
 app.delete('/rooms', (req, res) => {
-  db.reset((err) => {
+  const reviewId = req.body.reviewId;
+  db.deleteReview(Number(reviewId), (err) => {
     if (err) {
-      console.log('error deleting all data in collection:', err);
+      console.log('error deleting review in question:', err);
     } else {
-      console.log('all data in collection deleted');
+      console.log('review deleted');
+      res.send(200);
     }
     res.end();
   });
 });
 
 app.put('/rooms', (req, res) => {
-  db.addOneHouse(req.body, (err) => {
+  const newReview = req.body;
+  db.updateReview(newReview, (err) => {
     if (err) {
-      console.log('error adding house to database:', err);
+      console.log('error updating review:', err);
       res.end();
     } else {
-      console.log('house stored successfully!!!!');
+      console.log('review updated successfully!!!!');
       res.send(req.body);
     }
   });

@@ -31,15 +31,28 @@ function addReview({
 }
 
 function deleteReview(reviewId, callback) {
-  pool.query(`DELETE * FROM reviews WHERE review_id=${reviewId}`, (err,result) => {
+  pool.query(`DELETE * FROM reviews WHERE review_id=${reviewId}`, (err, result) => {
     if (err) {
       return callback(err, null);
     }
-    return callback(null, result)
-  })
+    return callback(null, result);
+  });
+}
+
+function updateReview({
+ reviewId, user_id, house_id, user_pic, user_name, review_date, review_text, review_language, communication, location, value, accuracy, cleanliness, check_in,
+}, callback) {
+  pool.query('UPDATE reviews SET (user_id, house_id, user_pic, user_name, review_date, review_text, review_language, communication, location, value, accuracy, cleanliness, check_in) = ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) WHERE review_id=$1', [reviewId, user_id, house_id, user_pic, user_name, review_date, review_text, review_language, communication, location, value, accuracy, cleanliness, check_in], (err, result) => {
+    if (err) {
+      return callback(err, null);
+    }
+    return callback(null, result);
+  });
 }
 
 module.exports = {
   selectReviews,
   addReview,
+  deleteReview,
+  updateReview,
 };
