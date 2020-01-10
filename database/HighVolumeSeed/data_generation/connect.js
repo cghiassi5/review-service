@@ -8,7 +8,7 @@ const { Pool } = require('pg');
   });
 
   const client = await pool.connect();
-
+  // creates reviews table
   try {
     client.query(`CREATE TABLE IF NOT EXISTS reviews (
     review_id SERIAL PRIMARY KEY,
@@ -30,7 +30,7 @@ const { Pool } = require('pg');
   } catch (err) {
     console.log(err);
   }
-  // to-do: create houses table
+  // creating houses table
   try {
     client.query(`CREATE TABLE IF NOT EXISTS houses (
     houses_id SERIAL PRIMARY KEY,

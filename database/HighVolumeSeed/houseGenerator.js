@@ -1,3 +1,4 @@
+/* class is used in writeHouses to create individual house pages */
 const faker = require('faker');
 
 class HouseGenerator {

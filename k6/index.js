@@ -1,3 +1,4 @@
+/* used for testing speed of database and server processes and finding bottlenecks */
 import http from 'k6/http';
 import { check } from 'k6';
 

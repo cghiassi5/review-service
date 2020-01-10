@@ -6,8 +6,8 @@ const pool = new Pool({
   database: 'airbnb',
 });
 
-function selectReviews(houseId, callback) {
-  pool.query(`SELECT * FROM houses JOIN reviews ON houses.houses_id = reviews.house_id WHERE houses.houses_id=${houseId} limit 100;`, (err, result) => {
+function selectReviews(review_id, callback) {
+  pool.query(`SELECT * FROM reviews WHERE review_id=${review_id}`, (err, result) => {
     if (err) {
       return callback(err, null);
     }

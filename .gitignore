@@ -15,4 +15,5 @@ logs
 .grunt
 
 #csv
-database/HighVolumeSeed/postgres/houses/house.csv
+database/HighVolumeSeed/data_generation/houses/house.csv
+database/HighVolumeSeed/data_generation/reviews/review.csv
