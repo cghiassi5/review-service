@@ -1,12 +1,12 @@
-# Airbnb Clone: Reviews Service
+# Housing Service: Reviews
 
 > This is a clone of the airbnb homes detail page reviews module.
 
 ## Related Projects
 
-  - https://github.com/roshi-HRR/main-photo-carousel-Service
-  - https://github.com/roshi-HRR/HRR41-more-homes-module
-  - https://github.com/roshi-HRR/HRR41-bookings-module-service
+  - https://github.com/SDC-Muenster/more-homes-module
+  - https://github.com/SDC-Muenster/main-photo-carousel
+  - https://github.com/SDC-Muenster/booking-service
   - https://github.com/roshi-HRR/HRR-House
 
 ## Table of Contents
